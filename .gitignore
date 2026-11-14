@@ -1,0 +1,10 @@
+target/
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+*.war
+.DS_Store
+*.log
+ansible/retry/

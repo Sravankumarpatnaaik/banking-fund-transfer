@@ -1,0 +1,19 @@
+# ClientIP affinity keeps a browser on one pod. Sessions are stored in Tomcat memory.
+# Replace this Service with an Ingress when you terminate TLS at the load balancer.
+apiVersion: v1
+kind: Service
+metadata:
+  name: meridian-bank
+  namespace: meridian
+spec:
+  type: LoadBalancer
+  selector:
+    app: meridian-bank
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

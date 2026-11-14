@@ -1,0 +1,6 @@
+target
+.git
+*.zip
+*.log
+.idea
+terminals

@@ -1,0 +1,33 @@
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: meridian_bank
+      MYSQL_USER: bankuser
+      MYSQL_PASSWORD: meridian_local
+      MYSQL_ROOT_PASSWORD: meridian_root_local
+    ports:
+      - "3307:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-pmeridian_root_local"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+    volumes:
+      - meridian-mysql:/var/lib/mysql
+
+  bank:
+    build: .
+    ports:
+      - "8844:8080"
+    environment:
+      DB_URL: jdbc:mysql://mysql:3306/meridian_bank?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC&connectionTimeZone=UTC
+      DB_USER: bankuser
+      DB_PASSWORD: meridian_local
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+volumes:
+  meridian-mysql:
