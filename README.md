@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Meridian Bank
 
 Meridian is a small online-banking ledger. You can open an account, sign in, check the balance, deposit, withdraw, transfer to another account, and read that account's history.
@@ -148,3 +149,7 @@ If this folder is already a clone, commit and push it directly. The zip is the s
 ## Tests
 
 `mvn test` checks amount parsing, password hashing, lock ordering, and, when MySQL is reachable, the ledger itself. The database tests register accounts, transfer, refuse an overdraft, and simulate a failure while the credit row is being written. After that failure both balances are unchanged.
+=======
+# banking-fund-transfer
+java banking fund transfer
+>>>>>>> 01e6673b76057b0161b92de5c5e157c5c72fda95
